@@ -1,4 +1,38 @@
 
+<content class="cat-facts-main container d-flex flex-column ">
 
-<h1>Random Cat Fact</h1>
-<p class="lead"><%= @cat_fact %></p>
+    <section class="facts-header d-flex flex-row justify-content-start align-items-center my-auto">
+
+      <h1 class="header-text">Random Cat Facts</h1>
+      <%= form_with(model: @cat_fact, url: cat_facts_path, method: :post, local: true) do |form| %>
+        <%= form.submit '+', class: 'btn btn-primary' %>
+      <% end %>
+
+    </section>
+
+    <section class="facts-container-body d-flex flex-wrap">
+        <div class="fact-user">
+
+
+        </div>
+      <% @cat_facts.each do |cat_fact| %>
+        <div class="fact d-flex align-items-center flex-column">
+
+          <div class="fact-card-head d-flex flex-row justify-content-between">
+            <p class="user">Username</p>
+
+            <%= button_to 'Delete', cat_fact, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+
+          <div class="fact-content">
+            <%= cat_fact.fact %>
+          </div>
+
+        </div>
+      <% end %>
+
+    </section>
+
+
+</content>
+
