@@ -22,18 +22,40 @@ body {
 
 .btn {
   border: 0;
-  background: #ffd6a5;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.125);
+  background: inherit;
 }
 
 .add {
-  margin-right: 10vh;
+  padding: 0 10px 0 10px;
+  background: inherit;
+  transition: 1s ease-in-out;
+  font-size: 20px;
+}
+
+.add:hover {
+  padding: 0 11px 0 11px;
+  background: inherit;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.125);
 }
 
 .sign {
+  margin: 0;
+  margin-left: 60vh;
   background: none;
   box-shadow: none;
+  transition: 1s ease-in-out;
+  font-size: 25px;
 }
+
+.sign:hover {
+  background: inherit;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.125);
+}
+
+.fact-top-container {
+  overflow-y: auto;
+}
+
 .cat-facts-main {
   margin-top: 10vh;
 }
