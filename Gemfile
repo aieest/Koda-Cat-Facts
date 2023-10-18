@@ -69,3 +69,4 @@ end
 
 gem 'rest-client'
 
+gem 'devise'

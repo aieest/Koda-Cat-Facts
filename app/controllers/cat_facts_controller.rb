@@ -1,6 +1,8 @@
 class CatFactsController < ApplicationController
+  before_action :authenticate_user!, only: [:create]
+
   def index
-    @cat_facts = CatFact.all.order(created_at: :desc)
+    @cat_facts = CatFact.order(created_at: :desc)
   end
 
   def create
@@ -10,7 +12,8 @@ class CatFactsController < ApplicationController
       response = ::RestClient.get(url)
       data = JSON.parse(response.body)
 
-      @cat_fact = CatFact.create(fact: data['fact'])
+      # Create a new cat fact associated with the current user
+      @cat_fact = current_user.cat_facts.create(fact: data['fact'])
       flash[:notice] = "New cat fact generated!"
     rescue RestClient::ExceptionWithResponse => e
       flash[:alert] = "Error fetching cat fact: #{e.message}"

@@ -5,9 +5,14 @@
 
       <h1 class="header-text">Random Cat Facts</h1>
       <%= form_with(model: @cat_fact, url: cat_facts_path, method: :post, local: true) do |form| %>
-        <%= form.submit '+', class: 'btn btn-primary' %>
+        <%= form.submit '+', class: 'btn btn-primary add' if user_signed_in?%>
       <% end %>
 
+      <% if user_signed_in? %>
+        <%= link_to 'Sign out', destroy_user_session_path, data: { 'turbo-method': :delete }, class: 'btn btn-danger sign' %>
+      <% else %>
+        <%= link_to 'Sign In', new_user_session_path, class: 'btn btn-primary sign' %>
+      <% end %>
     </section>
 
     <section class="facts-container-body d-flex flex-wrap">
@@ -19,9 +24,10 @@
         <div class="fact d-flex align-items-center flex-column">
 
           <div class="fact-card-head d-flex flex-row justify-content-between">
-            <p class="user">Username</p>
-
+            <p class="user"><%= cat_fact.user.nickname %></p>
+            <% if user_signed_in? && cat_fact.user == current_user %>
             <%= button_to '', cat_fact, method: :delete, data: { confirm: 'Are you sure?' }, class: 'fa-solid fa-trash' %>
+            <% end %>
           </div>
 
           <div class="fact-content">
