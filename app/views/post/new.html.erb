@@ -1,0 +1,9 @@
+<content class="post-form">
+
+  <h1 class="secondary-header">New Post</h1>
+
+  <%= render partial: 'form', locals: { post: @post } %>
+
+  <%= link_to 'Cancel', posts_path, class: 'cancel-btn' %>
+
+</content>
